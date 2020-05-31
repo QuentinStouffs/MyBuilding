@@ -40,19 +40,23 @@ abstract class DAO {
                     $qry.= $property.','; 
                     array_push($values, $object->__get($property));
                 }
+                $interrogation = array_fill(0, count($values), '?');
+                $placers = "(".implode(',', $interrogation).")";
             }
 
             $qry = rtrim($qry, ",");
             $qry.=')';
-            $qry = "INSERT INTO {$this->table} {$qry} VALUES (?, ?, ?, ?, ?, ?)";
+            $qry = "INSERT INTO {$this->table} {$qry} VALUES {$placers}";
             
             try {
                 $statement = $this->connection->prepare($qry);
                 $statement->execute($values);
+                return true;
             } catch(PDOException $e) {
                 print $e->getMessage();
             }
-        } 
+        }
+        return false;
     }
     
     function fetchAll() {

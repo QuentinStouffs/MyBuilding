@@ -12,7 +12,7 @@ class Router {
     function __construct($get, $post, $self, $url) {
         $this->get = $get;
         $this->post = $post;
-        $this->controller_list = ['index', 'test'];
+        $this->controller_list = ['index', 'CreateUser'];
         $this->controller_name = false;
         $this->controller = false;
         $this->root = $this->parseRoot($self);
@@ -42,6 +42,7 @@ class Router {
 
         if($controller && in_array($controller, $this->controller_list)) {
             $this->controller_name = ucfirst($controller.'Controller');
+            var_dump($this->controller_name);
         }
         //nettoyer le path pour n'y laisser que ce qui est important
         //return $path[3];

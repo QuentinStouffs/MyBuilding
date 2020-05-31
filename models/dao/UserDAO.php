@@ -7,7 +7,25 @@ class UserDAO extends DAO {
     
     function __construct() {
         $this->deleteBehaviour = new SoftDeleteBehaviour();
-        $this->table = 'products'; 
-        $this->properties = ['pk', 'name', 'price', 'vat', 'price_vat', 'price_total', 'quantity'];
+        $this->table = 'users';
+        $this->properties = ['pk', 'name', 'email', 'password', 'role', 'appartment_number', 'FK_building'];
+        parent::__construct();
+
     }
+
+    function create($data) {
+        return new User(
+            $data['pk'],
+            $data['name'],
+            $data['email'],
+            $data['password'],
+//            $data['role'],
+            'resident',
+            $data['appartment_number'],
+//            $data['FK_building']
+            2
+        );
+    }
+
+
 }
