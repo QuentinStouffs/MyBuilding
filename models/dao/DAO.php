@@ -53,12 +53,50 @@ abstract class DAO {
                 $statement->execute($values);
                 return true;
             } catch(PDOException $e) {
-                print $e->getMessage();
+                if($e->getCode() == "23000") {
+                    return "Cet enregistrement existe déja";
+                } else {
+                    print $e->getMessage();
+                }
             }
         }
         return false;
     }
-    
+
+    function update($data){
+        $object = $this->create($data);
+        return $this->updateWithObject($object);
+    }
+
+    function updateWithObject($object) {
+        if ($object) {
+            $qry = "";
+            $values = array();
+            $params = "(";
+
+            foreach($this->properties as $property) {
+                if($property !== 'pk') {
+                    $qry.= $property.'= ?,';
+                    array_push($values, $object->__get($property));
+                }
+            }
+            array_push($values, $object->__get('pk'));
+
+            $qry = rtrim($qry, ",");
+            $qry = "UPDATE {$this->table} SET {$qry} WHERE pk = ?";
+            try {
+                $statement = $this->connection->prepare($qry);
+                $statement->execute($values);
+                return true;
+            } catch(PDOException $e) {
+                if($e->getCode() == "23000") {
+                    return "Cet enregistrement existe déja";
+                } else {
+                    print $e->getMessage();
+                }
+            }
+        }
+    }
     function fetchAll() {
         try {
             $statement = $this->connection->prepare("SELECT * FROM {$this->table}");

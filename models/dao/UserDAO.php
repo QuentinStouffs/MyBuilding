@@ -3,6 +3,7 @@
 class UserDAO extends DAO {
     protected $table;
     protected $deleteBehaviour;
+    protected $updateUserBehaviour;
     protected $properties;
     
     function __construct() {
@@ -13,12 +14,12 @@ class UserDAO extends DAO {
 
     }
 
-    function create($data) {
+    static function create($data) {
         return new User(
             $data['pk'],
             $data['name'],
             $data['email'],
-            $data['password'],
+            User::passwordEncrypt($data['password']),
 //            $data['role'],
             'resident',
             $data['appartment_number'],

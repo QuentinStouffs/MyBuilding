@@ -1,28 +1,19 @@
 <?php
 
 
-class CreateUserController
+class ListUsersController
 {
     private $dao;
     private $view;
     private $data=null;
     function __construct($get, $post, $route) {
         $this->dao = new UserDAO();
-        $this->view = new CreateUserPageView();
-        if($post && isset($post['create'])) {
-            if($post['password'] == $post['checkPassword']) {
-                if($this->createUser($post)){
-                    $this->data = ['success' => 'success'];
-                }
-            }else{
-                $this->data=['fail' => 'Les mots de passe ne correspondent pas'];
-            }
-        }
+        $this->view = new ListUserPageView();
 //        var_dump('route', $route, 'post', $post);
         if($post && isset($post['id']) && $route == 'delete') {
             $this->delete($post['id']);
         }
-
+        $this->data=$this->dao->fetchAll();
         $this->displayOne($this->data);
     }
 

@@ -2,35 +2,29 @@
     <br>
     <br>
     <div class="container">
-        <?php
-            if (isset($data) && isset($data['success'])) :?>
-            <h3 class="color-success">Utilisateur enregistré</h3>
-        <?php endif;
-            if (isset($data) && isset($data['fail'])) :
-        ?>
-            <h3 class="color-danger"><?= $data['fail'] ?></h3>
-        <?php endif; ?>
+
         <form method="post">
-            <p class="lead">Entrez vos données</p>
-            <input type="hidden" name="create" value="create">
+            <p class="lead">Modifier l'utilisateur</p>
+            <input type="hidden" name="modify" value="modify">
+            <input type="hidden" name="pk" value="<?= $data->__get('pk') ?>">
             <div class="form-group">
                 <label for="name">Nom</label>
-                <input type="text" class="form-control" name="name" id="name">
+                <input type="text" class="form-control" name="name" id="name" value="<?= $data->__get('name') ?>">
             </div>
             <div class="form-group">
                 <label for="email">Email address</label>
-                <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp">
+                <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" value="<?= $data->__get('email') ?>">
             </div>
             <div class="form-group">
                 <label for="appartment_number">Numéro d'appartement</label>
-                <input type="text" class="form-control" name="appartment_number" id="appartment_number">
+                <input type="text" class="form-control" name="appartment_number" id="appartment_number" value="<?= $data->__get('appartment_number') ?>">
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Password</label>
                 <input type="password" name="password" class="form-control" id="exampleInputPassword1">
             </div>
             <div class="form-group">
-                <label for="checkPassword">Password</label>
+                <label for="checkPassword">Répéter Password</label>
                 <input type="password" name="checkPassword" class="form-control" id="checkPassword">
             </div>
 

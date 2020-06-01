@@ -3,13 +3,13 @@
 
 class User
 {
-    private $pk;
-    private $name;
-    private $email;
-    private $password;
-    private $role;
-    private $appartment_number;
-    private $building;
+    public $pk;
+    public $name;
+    public $email;
+    public $password;
+    public $role;
+    public $appartment_number;
+    public $building;
 
     /**
      * User constructor.
@@ -32,6 +32,9 @@ class User
         $this->building = $building;
     }
 
+    static function passwordEncrypt ($password) {
+        return password_hash($password, PASSWORD_DEFAULT);
+    }
 
     function __get($property) {
         if (property_exists($this, $property)) {
