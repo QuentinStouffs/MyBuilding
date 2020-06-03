@@ -13,6 +13,7 @@
         <form method="post">
             <p class="lead">Entrez vos données</p>
             <input type="hidden" name="create" value="create">
+            <input type="hidden" name="role" value="resident">
             <div class="form-group">
                 <label for="name">Nom</label>
                 <input type="text" class="form-control" name="name" id="name">

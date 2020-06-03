@@ -22,7 +22,7 @@
                             <td><?= $u->__get('email') ?></td>
                             <td><?= $u->__get('building') ?></td>
                             <td><?= $u->__get('appartment_number') ?></td>
-                            <td><a href="/MyBuilding/ModifyUser?pk=<?= $u->__get('pk') ?>" class="btn btn-primary">Modifier</a> </td>
+                            <td><a href="/MyBuilding/ModifyUser?pk=<?= $u->__get('pk') ?>" class="btn btn-primary">Modifier</a> <a href="/MyBuilding/DeleteUser?pk=<?= $u->__get('pk') ?>" class="btn btn-danger">Supprimer</a></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
