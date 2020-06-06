@@ -2,15 +2,12 @@
     <br>
     <br>
     <div class="container">
-        <h3>Liste des utilisateurs</h3>
+        <h3>Liste des immeubles</h3>
         <table class="table">
             <thead>
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nom</th>
-                <th scope="col">email</th>
-                <th scope="col">Immeuble</th>
-                <th scope="col">N°Ap.</th>
                 <th scope="col">Options</th>
             </tr>
             </thead>
@@ -19,10 +16,7 @@
                     <tr>
                             <th scope="row"><?= $u->__get('pk') ?></th>
                             <td><?= $u->__get('name') ?></td>
-                            <td><?= $u->__get('email') ?></td>
-                            <td><?= $u->__get('building') ?></td>
-                            <td><?= $u->__get('appartment_number') ?></td>
-                            <td><a href="/MyBuilding/ModifyUser?pk=<?= $u->__get('pk') ?>" class="btn btn-primary">Modifier</a> <a href="/MyBuilding/ListUsers?delete=<?= $u->__get('pk') ?>" class="btn btn-delete btn-danger">Supprimer</a></td>
+                            <td><a href="/MyBuilding/ModifyBuilding?pk=<?= $u->__get('pk') ?>" class="btn btn-primary">Modifier</a> <a href="/MyBuilding/ListBuildings?delete=<?= $u->__get('pk') ?>" class="btn btn-delete btn-danger">Supprimer</a></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

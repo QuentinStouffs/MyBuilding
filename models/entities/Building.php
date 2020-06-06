@@ -1,21 +1,20 @@
 <?php
 
 
-class ModifyUserPageView extends PageView
+class Building
 {
+    private $pk;
+    private $name;
 
-    function __construct() {
-        Parent::__construct();
-    }
-
-
-    function displayOne($data) {
-        $this->template($data);
-        return $this->render;
-    }
-
-    function templateSingle($data) {
-        return $this->generateOne($data);
+    /**
+     * Building constructor.
+     * @param $pk
+     * @param $name
+     */
+    public function __construct($pk, $name)
+    {
+        $this->pk = $pk;
+        $this->name = $name;
     }
 
     function __get($property) {

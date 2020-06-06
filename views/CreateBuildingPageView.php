@@ -1,9 +1,10 @@
 <?php
 
 
-class CreateUserPageView extends PageView
+class CreateBuildingPageView extends PageView
 {
-    function __construct() {
+    public function __construct()
+    {
         Parent::__construct();
     }
 
@@ -17,7 +18,7 @@ class CreateUserPageView extends PageView
 
     function generateOne($data) {
         ob_start();
-        include 'views/template/createUserForm.php';
+        include 'views/template/createBuildingForm.php';
         return ob_get_clean();
     }
 

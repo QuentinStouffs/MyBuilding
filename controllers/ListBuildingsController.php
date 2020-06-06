@@ -1,14 +1,14 @@
 <?php
 
 
-class ListUsersController
+class ListBuildingsController
 {
     private $dao;
     private $view;
     private $data=null;
     function __construct($get, $post, $route) {
-        $this->dao = new UserDAO();
-        $this->view = new ListUserPageView();
+        $this->dao = new BuildingDAO();
+        $this->view = new ListBuildingsPageView();
 //        var_dump('route', $route, 'post', $post);
         if($get && isset($get['delete'])) {
             $this->delete($get['delete']);
@@ -24,5 +24,6 @@ class ListUsersController
 
     function delete($id) {
         $this->dao->delete($id);
+        echo "AUREVOIR";
     }
 }

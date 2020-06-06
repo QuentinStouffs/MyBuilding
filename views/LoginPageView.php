@@ -1,14 +1,10 @@
 <?php
 
 
-class LoginPageView
+class LoginPageView extends PageView
 {
-    private $page;
-    private $render;
-
     function __construct() {
-        $this->page = false;
-        $this->render = false;
+        PageView::__construct();
     }
 
     function displayPage($product_list) {

@@ -7,7 +7,7 @@ class UserDAO extends DAO {
     protected $properties;
     
     function __construct() {
-        $this->deleteBehaviour = new SoftDeleteBehaviour();
+        $this->deleteBehaviour = new HardDeleteBehaviour();
         $this->table = 'users';
         $this->properties = ['pk', 'name', 'email', 'password', 'role', 'appartment_number', 'FK_building'];
         parent::__construct();

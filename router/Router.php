@@ -13,7 +13,7 @@ class Router {
     function __construct($get, $post, $self, $url) {
         $this->get = $_GET;
         $this->post = $post;
-        $this->controller_list = ['index', 'login', 'CreateUser', 'ListUsers', 'ModifyUser'];
+        $this->controller_list = ['index', 'login', 'CreateUser', 'ListUsers', 'ModifyUser', 'CreateBuilding', 'ListBuildings'];
         $this->controller_name = false;
         $this->anonymous_list = ['login', 'CreateUser'];
         $this->controller = false;
@@ -39,7 +39,7 @@ class Router {
         if($path && count($path) && strlen($path[0])) {
             if($path[0] == 'logout'){
                 session_destroy();
-                $controller='login';
+                header('Location: login');
             }
             if (SecurityHelper::getSession() || in_array($path[0], $this->anonymous_list))
             {

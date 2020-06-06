@@ -1,7 +1,7 @@
 <?php
 
 
-class ListUserPageView extends PageView
+class ListBuildingsPageView extends PageView
 {
     public function __construct()
     {
@@ -20,13 +20,12 @@ class ListUserPageView extends PageView
 
     function generateOne($data) {
         ob_start();
-        include 'views/template/listUsers.php';
+        include 'views/template/listBuildings.php';
         return ob_get_clean();
     }
 
     function templateSingle($data) {
         return $this->generateOne($data);
     }
-
 
 }

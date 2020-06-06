@@ -11,7 +11,7 @@ abstract class DAO {
     }
     
     function delete($pk) {
-       $this->deleteBehaviour->delete($pk);
+       $this->deleteBehaviour->delete($pk, $this->connection, $this->table);
     }
     
     function fetch($pk) {
