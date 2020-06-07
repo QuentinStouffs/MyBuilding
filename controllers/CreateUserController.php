@@ -10,7 +10,6 @@ class CreateUserController
         $this->dao = new UserDAO();
         $this->view = new CreateUserPageView();
         $buildingDao = new BuildingDAO();
-        if(SecurityHelper::isAdmin()) {
             $this->data['buildings'] = $buildingDao->fetchAll();
             if($post && isset($post['create'])) {
                 if($post['password'] == $post['checkPassword']) {
@@ -27,9 +26,6 @@ class CreateUserController
             }
 
             $this->displayOne($this->data);
-        }else{
-            header('Location: /MyBuilding/');
-        }
     }
 
     function displayOne($data) {
