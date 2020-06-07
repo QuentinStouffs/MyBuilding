@@ -23,6 +23,14 @@
                 <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp">
             </div>
             <div class="form-group">
+                <label for="building">Immeuble</label>
+                <select class="form-control" id="building" name="FK_building">
+                    <?php foreach ($data['buildings'] as $g): ?>
+                        <option value="<?= $g->__get('pk') ?>"><?= $g->__get('name') ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="appartment_number">Numéro d'appartement</label>
                 <input type="text" class="form-control" name="appartment_number" id="appartment_number">
             </div>

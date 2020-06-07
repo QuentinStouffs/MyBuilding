@@ -1,21 +1,19 @@
 <?php
 
 
-class LoginController
+class ListCommunicationsController
 {
     private $dao;
     private $view;
     private $data=null;
     function __construct($get, $post, $route) {
-        $this->dao = new UserDAO();
-        $this->view = new LoginPageView();
+        $this->dao = new CommunicationDAO();
+        $this->view = new ListCommunicationsPageView();
 //        var_dump('route', $route, 'post', $post);
-        if($post && isset($post['email'])) {
-            $user = $this->dao->login($post);
-            new SecurityHelper($user);
-            header("Location: /MyBuilding/");
+        if($get && isset($get['delete'])) {
+            $this->delete($get['delete']);
         }
-
+        $this->data=$this->dao->fetchAllByBuilding($_SESSION['FK_building']);
         $this->displayOne($this->data);
     }
 

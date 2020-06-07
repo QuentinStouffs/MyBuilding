@@ -13,7 +13,7 @@ class Router {
     function __construct($get, $post, $self, $url) {
         $this->get = $_GET;
         $this->post = $post;
-        $this->controller_list = ['index', 'login', 'CreateUser', 'ListUsers', 'ModifyUser', 'CreateBuilding', 'ListBuildings'];
+        $this->controller_list = ['index', 'login', 'CreateUser', 'ListUsers', 'ModifyUser','UpdateBuilding', 'CreateBuilding', 'ListBuildings', 'CreateCommunication', 'ListCommunications'];
         $this->controller_name = false;
         $this->anonymous_list = ['login', 'CreateUser'];
         $this->controller = false;
@@ -48,7 +48,7 @@ class Router {
                 $controller = 'login';
             }
         } else if(count($path) && !strlen($path[0])) {
-            $controller = 'login';
+            $controller = 'ListCommunications';
         }
 
         if($controller && in_array($controller, $this->controller_list)) {

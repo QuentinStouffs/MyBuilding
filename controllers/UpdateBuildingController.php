@@ -1,27 +1,28 @@
 <?php
 
 
-class CreateUserController
+class UpdateBuildingController
 {
     private $dao;
     private $view;
     private $data=null;
     function __construct($get, $post, $route) {
-        $this->dao = new UserDAO();
-        $this->view = new CreateUserPageView();
-        $buildingDao = new BuildingDAO();
-        if(SecurityHelper::isAdmin()) {
-            $this->data['buildings'] = $buildingDao->fetchAll();
-            if($post && isset($post['create'])) {
-                if($post['password'] == $post['checkPassword']) {
-                    if($this->createUser($post)){
-                        $this->data = ['success' => 'success'];
-                    }
-                }else{
+        if(SecurityHelper::isAdmin()){
+            $this->dao = new BuildingDAO();
+            $this->view = new UpdateBuildingPageView();
+            if(isset($get) && isset($get['pk'])){
+                $this->data['user'] = $this->dao->fetch($get['pk']);
+            }
+
+            if($post && isset($post['modify'])) {
+
+                $rah=$this->modifyBuilding($post);
+                if ($rah) {
+                    $this->data = $this->dao->fetch($post['pk']);
+                } else{
                     $this->data=['fail' => 'Les mots de passe ne correspondent pas'];
                 }
             }
-    //        var_dump('route', $route, 'post', $post);
             if($post && isset($post['id']) && $route == 'delete') {
                 $this->delete($post['id']);
             }
@@ -41,11 +42,12 @@ class CreateUserController
         $this->dao->delete($id);
     }
 
-    private function createUser($data)
+    private function modifyBuilding($data)
     {
-        if($this->dao->save($data)){
+        if($this->dao->update($data)){
             return true;
+        }else{
+            return false;
         }
-        return false;
     }
 }

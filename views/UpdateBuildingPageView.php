@@ -1,7 +1,7 @@
 <?php
 
 
-class ModifyUserPageView extends PageView
+class UpdateBuildingPageView extends PageView
 {
 
     function __construct() {
@@ -13,11 +13,13 @@ class ModifyUserPageView extends PageView
         $this->template($data);
         return $this->render;
     }
+
     function generateOne($data) {
         ob_start();
-        include 'views/template/modifyUserForm.php';
+        include 'views/template/updateBuildingForm.php';
         return ob_get_clean();
     }
+
     function templateSingle($data) {
         return $this->generateOne($data);
     }

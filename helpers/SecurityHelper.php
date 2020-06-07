@@ -19,6 +19,7 @@ class SecurityHelper
         $_SESSION['email']=$user->__get('email');
         $_SESSION['appartment_number']=$user->__get('appartment_number');
         $_SESSION['role']=$user->__get('role');
+        $_SESSION['FK_building']=$user->__get('building');
         $this->session = $_SESSION;
     }
 

@@ -1,25 +1,25 @@
 <?php
 
 
-class ModifyUserPageView extends PageView
+class CreateCommunicationPageView extends PageView
 {
-
-    function __construct() {
+    public function __construct()
+    {
         Parent::__construct();
     }
-
 
     function displayOne($data) {
         $this->template($data);
         return $this->render;
     }
-    function generateOne($data) {
-        ob_start();
-        include 'views/template/modifyUserForm.php';
-        return ob_get_clean();
-    }
     function templateSingle($data) {
         return $this->generateOne($data);
+    }
+
+    function generateOne($data) {
+        ob_start();
+        include 'views/template/createCommunicationForm.php';
+        return ob_get_clean();
     }
 
     function __get($property) {

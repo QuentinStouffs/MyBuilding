@@ -16,7 +16,7 @@
                     <tr>
                             <th scope="row"><?= $u->__get('pk') ?></th>
                             <td><?= $u->__get('name') ?></td>
-                            <td><a href="/MyBuilding/ModifyBuilding?pk=<?= $u->__get('pk') ?>" class="btn btn-primary">Modifier</a> <a href="/MyBuilding/ListBuildings?delete=<?= $u->__get('pk') ?>" class="btn btn-delete btn-danger">Supprimer</a></td>
+                            <td><a href="/MyBuilding/UpdateBuilding?pk=<?= $u->__get('pk') ?>" class="btn btn-primary">Modifier</a> <a href="/MyBuilding/ListBuildings?delete=<?= $u->__get('pk') ?>" class="btn btn-delete btn-danger">Supprimer</a></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

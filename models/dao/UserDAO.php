@@ -22,8 +22,7 @@ class UserDAO extends DAO {
             User::passwordEncrypt($data['password']),
             $data['role'],
             $data['appartment_number'],
-//            $data['FK_building']
-            2
+            $data['FK_building']
         );
     }
 
@@ -32,7 +31,6 @@ class UserDAO extends DAO {
             $statement = $this->connection->prepare("SELECT * FROM {$this->table} WHERE email = ? ");
             $statement->execute([$data['email']]);
             $result = $statement->fetch(PDO::FETCH_ASSOC);
-                var_dump([$result['password'], $data['password'], password_verify($data['password'], $result['password'])]);
             if(password_verify($data['password'], $result['password'])) {
                 return $this->create($result);
             }

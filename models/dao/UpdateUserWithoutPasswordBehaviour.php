@@ -5,8 +5,8 @@ class UpdateUserWithoutPasswordBehaviour extends DAO implements UpdateUserBehavi
 {
     public function update($data)
     {
-        $values = [$data['name'], $data['email'], $data['appartment_number'], $data['pk']];
-        $qry = "UPDATE users SET name = ?, email = ?, appartment_number = ? WHERE pk = ?";
+        $values = [$data['name'], $data['email'], $data['appartment_number'],  $data['FK_building'], $data['pk']];
+        $qry = "UPDATE users SET name = ?, email = ?, appartment_number = ?, FK_building = ? WHERE pk = ?";
         try {
             $statement = $this->connection->prepare($qry);
             $statement->execute($values);

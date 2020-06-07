@@ -9,8 +9,11 @@ class ModifyUserController
     function __construct($get, $post, $route) {
         $this->dao = new UserDAO();
         $this->view = new ModifyUserPageView();
+
+        $buildingDao = new BuildingDAO();
+        $this->data['buildings'] = $buildingDao->fetchAll();
         if(isset($get) && isset($get['pk'])){
-            $this->data = $this->dao->fetch($get['pk']);
+            $this->data['user'] = $this->dao->fetch($get['pk']);
         }
 
         if($post && isset($post['modify'])) {
@@ -21,9 +24,8 @@ class ModifyUserController
 
             }
             $rah=$this->modifyUser($post);
-                var_dump($rah);
             if ($rah) {
-                $this->data = $this->dao->fetch($post['pk']);
+                $this->data['user'] = $this->dao->fetch($post['pk']);
             } else{
                 $this->data=['fail' => 'Les mots de passe ne correspondent pas'];
             }

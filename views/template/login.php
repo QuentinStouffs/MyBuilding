@@ -297,7 +297,7 @@
         </form>
 
         <div id="formFooter">
-            <a class="underlineHover" href="#">Pas de login ?</a>
+            <a class="underlineHover" href="/MyBuilding/CreateUser">Pas de login ?</a>
         </div>
 
     </div>

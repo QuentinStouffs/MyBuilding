@@ -115,6 +115,19 @@ abstract class DAO {
             print $e->getMessage();
         }    
     }
+
+    function fetchAllInArray() {
+        try {
+            $statement = $this->connection->prepare("SELECT * FROM {$this->table}");
+            $statement->execute();
+            $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+            return $this->results;
+
+        } catch (PDOException $e) {
+            print $e->getMessage();
+        }
+    }
     
     function __get($property) {
         if (property_exists($this, $property)) {
