@@ -35,22 +35,24 @@ class Router {
             }
         }
         $controller = false;
-
         if($path && count($path) && strlen($path[0])) {
             if($path[0] == 'logout'){
                 session_destroy();
                 header('Location: login');
             }
-            if (SecurityHelper::getSession() || in_array($path[0], $this->anonymous_list))
-            {
+            if (SecurityHelper::getSession()) {
                 $controller = $path[0];
             } else {
                 $controller = 'login';
             }
         } else if(count($path) && !strlen($path[0])) {
-            $controller = 'ListCommunications';
-        }
+            if (SecurityHelper::getSession()) {
+                $controller = 'ListCommunications';
+            } else {
+                $controller = 'login';
+            }
 
+        }
         if($controller && in_array($controller, $this->controller_list)) {
             $this->controller_name = ucfirst($controller.'Controller');
         }
