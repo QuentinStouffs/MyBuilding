@@ -13,7 +13,11 @@ class ListCommunicationsController
         if($get && isset($get['delete'])) {
             $this->delete($get['delete']);
         }
-        $this->data=$this->dao->fetchAllByBuilding($_SESSION['FK_building']);
+        if(SecurityHelper::isAdmin()){
+            $this->data=$this->dao->fetchAll();
+        }else{
+            $this->data=$this->dao->fetchAllByBuilding($_SESSION['FK_building']);
+        }
         $this->displayOne($this->data);
     }
 
